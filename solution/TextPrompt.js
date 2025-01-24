@@ -1,4 +1,4 @@
-import PromptInterface from "./PromptInterface"
+import PromptInterface from "./PromptInterface.js"
 
 class TextPrompt extends PromptInterface{
     _id = 0

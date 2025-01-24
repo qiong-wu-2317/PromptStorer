@@ -24,7 +24,7 @@ class PromptManager{
         return this[promptsSymbol].length < initialLength;
     }
 
-    list() {
+    listId() {
         return this[promptsSymbol].map((prompt) => prompt.id);
     }
 
