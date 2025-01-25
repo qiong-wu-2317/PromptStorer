@@ -1,32 +1,38 @@
-import TextPrompt from "./TextPrompt.js"
-import Attachment from "./Attachment.js"
+import Attachment from "./Attachment.js";
+import PromptInterface from "./PromptInterface.js";
 
-class MultiModalPrompt extends TextPrompt {
-    attachements = {inputAttachment: null, outputAttachment: null}
+class MultiModelPrompt extends PromptInterface {
+  attachements = {inputAttachment: null, outputAttachment: null};
 
-    constructor({
-        id = 1234,
-        input = "Please translate Eng-to-French: 'Hello, world!'",
-        output = "Bonjour, le monde!",
-        model = "Claude",
-        version = "Sonnet 3.5",
-        result = "Success",
-        type = "Text-to-Text",
-        inputAttachment = new Attachment(), 
-        outputAttachment = new Attachment()} = {}){
+  constructor({
+    id = 1234,
+    input = "Please translate Eng-to-French: 'Hello, world!'",
+    output = "Bonjour, le monde!",
+    model = "Claude",
+    version = "Sonnet 3.5",
+    result = "Success",
+    inputAttachment = new Attachment(), 
+    outputAttachment = new Attachment()} = {}){
 
-            super({id,
-                input,
-                output,
-                model,
-                version,
-                result,
-                type})
-            const _inputAttachment = new Attachment(inputAttachment)
-            this.attachements.inputAttachment = _inputAttachment
-            const _outputAttachment = new Attachment(outputAttachment)
-            this.attachements.outputAttachment = _outputAttachment
-    }
+    super({id,
+      input,
+      output,
+      model,
+      version,
+      result});
+    // const _inputAttachment = new Attachment(inputAttachment);
+    // console.log(inputAttachment)
+    this.attachements.inputAttachment = inputAttachment;
+    // const _outputAttachment = new Attachment(outputAttachment);
+    this.attachements.outputAttachment = outputAttachment;
+  }
+
+  toString() {
+    return `${super.toString()}
+    input attachement: ${this.attachements.inputAttachment.toString()}
+    output attachement: ${this.attachements.outputAttachment.toString()}
+    `;
+  }
 }
 
-export default MultiModalPrompt;
+export default MultiModelPrompt;

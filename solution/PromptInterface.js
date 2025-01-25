@@ -1,35 +1,92 @@
-class PromptInterface {
-    constructor() {
-    }
+export default class PromptInterface {
+  _id;
+  _input;
+  _output;
+  _model = "";
+  _version;
+  _result;
+  #valid
 
-    toString() {
-        throw new Error('Not implemented. e.g. "2025/01/17 2:28PM - Success"');
-    }
+  constructor({id, input, output, model, version, result}) {
+    this._id = id;
+    this._input = input;
+    this._output = output;
+    this._model = model;
+    this._result = result;
+    this._version = version;
+    this._date = new Date();
+    this.#valid = 1;
+  }
 
-    get date() {
-        throw new Error("Not implemented. e.g. 2025/01/17 2:28PM");
+  toString() {
+    if (!this._id) {
+      throw new Error("Not implemented. e.g. \"2025/01/17 2:28PM - Success\"");
     }
+    return `⭐️ Prompt ${this.id} (${this.date.toLocaleString()}) ${this.model} ${this.version} - ${this.result}
+    Input: ${this._input}
+    Output: ${this._output}`;
+  }
 
-    get result() {
-        throw new Error('Not implemented. e.g. "Success"');
+  get date() {
+    if (!this._id) {
+      throw new Error("Not implemented. e.g. 2025/01/17 2:28PM");
     }
+    return this._date;
+  }
 
-    get id() {
-        throw new Error("Not implemented. e.g. 1234");
+  get result() {
+    if (!this._id) {
+      throw new Error("Not implemented. e.g. \"Success\"");
     }
+    return this._result;
+  }
 
-    get model() {
-        throw new Error("Not implemented. e.g. Claude");
+  get id() {
+    if (!this._id) {
+      throw new Error("Not implemented. e.g. 1234");
     }
+    return this._id;
+  }
 
-    get version() {
-        throw new Error("Not implemented: e.g. Sonnet 3.5");
+  get model() {
+    if (!this._id) {
+      throw new Error("Not implemented. e.g. Claude");
     }
+    return this._model;
+  }
 
-    get type() {
-        throw new Error("Not implemented: e.g. Text-to-Text");
+  get version() {
+    if (!this._id) {
+      throw new Error("Not implemented: e.g. Sonnet 3.5");
     }
+    return this._version;
+  }
+
+  get input() {
+    if (!this._id) {
+      throw new Error("Not implemented");
+    }
+    return this._input;
+  }
+
+  get output() {
+    if (!this._id) {
+      throw new Error("Not implemented");
+    }
+    return this._output;
+  }
+
+  match(text){
+    return this._model && this._model.toLowerCase().indexOf(text.toLowerCase()) >= 0;
+  }
+
+  get valid() {
+    return this.#valid === 1;
+  }
+
+  delete(){
+    this.#valid = 0;
+  }
 }
 
-export default PromptInterface;
 

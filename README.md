@@ -10,18 +10,6 @@ cd PromptStorer
 npm install
 ```
 
-To run the basic example please run
-
-```bash
-npm start
-```
-
-To run the set of tests run
-
-```bash
-npm test
-```
-
 ## Project description:
 
 ### PromptInterface
@@ -51,5 +39,20 @@ addPrompt(prompt) - Adding prompts.
 deletePromptById(id) - Deleting prompts by their ID .
 listId() - Listing prompt IDs .
 
+## Project runable:
+This project includes a terminal-based conversational program. To start the program:
+```
+npm start
+```
+Once started, you can interact with the program via the terminal. It allows you to view, add, delete, and filter prompts interactively.
 
+## interact with Gen AI
+1. Ask test case error by just copy the error part in, like:
+```
+    const iterator = manager[Symbol.iterator]();
+```
 
+2. Ask AI by 'how to make an input acceptable terminal conversitional js'
+All lines with basic comment are from chatGPT, I kept the structure but replaced the functions and logic.
+
+3. Always, copy file in and write: polish words.
